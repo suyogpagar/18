@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Total Bill with GST</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #333;
+    }
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 350px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #31183e;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #061470;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #0073e6;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Total Bill Calculator (with 18% GST)</h1>
+  <label for="priceInput">Enter product prices (separated by comma):</label> 
+  <input type="text" id="priceInput" placeholder=" (e.g. 100, 200, 300)" />
+  <br>
+  <button onclick="calculateTotal()">Calculate Total</button>
+
+  <div id="result"></div>
+
+  <script>
+    
+    const getTotalWithGST = (...prices) => {
+      let total = 0;
+      prices.forEach(price => {
+        total += price + (price * 0.18); 
+      });
+      return total;
+    };
+
+    
+    const calculateTotal = () => {
+      const input = document.getElementById("priceInput").value;
+      const priceArray = input
+        .split(",")
+        .map(p => parseFloat(p.trim()))
+        .filter(p => !isNaN(p) && p >= 0);
+
+      if (priceArray.length === 0) {
+        alert("Please enter at least one valid price.");
+        return;
+      }
+
+      const total = getTotalWithGST(...priceArray);
+      document.getElementById("result").innerText = `Total bill (with 18% GST): ₹${total.toFixed(2)}`;
+    };
+  </script>
+
+</body>
+</html>

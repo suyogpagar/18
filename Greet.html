@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Greet User</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #ad9ce1;
+            color: #34495e;
+        }
+        
+        .container {
+            background: #e1e1e0;
+            padding: 2rem;
+            border-radius: 15px;
+           
+            width: 300px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            width: 100%;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 10px;
+            background: #2980b9;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #1f6391;
+        }
+        
+        .greeting {
+            margin-top: 1rem;
+            font-weight: 600;
+            min-height: 1.5rem;
+            color: #2c3e50;
+        }
+        
+        .error {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Greet User</h1>
+        <label>Your Name</label>
+        <input type="text" id="nameInput" placeholder="Enter your name" />
+        <label>City Name</label>
+        <input type="text" id="cityInput" placeholder="Enter your city (optional)" />
+        <button id="greetBtn">Greet Me!</button>
+        <div id="greetingMessage" class="greeting"></div>
+    </div>
+
+    <script>
+        const nameInput = document.getElementById('nameInput');
+        const cityInput = document.getElementById('cityInput');
+        const greetBtn = document.getElementById('greetBtn');
+        const greetingMessage = document.getElementById('greetingMessage');
+
+
+        greetBtn.onclick = () => {
+
+            let name = nameInput.value.trim();
+            if (!name) {
+                greetingMessage.textContent = "Please enter your name.";
+                greetingMessage.className = "greeting error";
+                return;
+            }
+
+            let city = cityInput.value.trim() || "your city";
+
+            greetingMessage.textContent = `Hello, ${name}! from ${city}.`;
+            greetingMessage.cddlassName = "greeting";
+        };
+    </script>
+
+</html>
+

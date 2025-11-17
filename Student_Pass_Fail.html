@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Pass Filter</title>
+  <style>
+    body { text-align: center; font-family: Arial; }
+    .input-box { display: flex; justify-content: center; gap: 10px; margin: 10px; }
+    input, button { padding: 8px; }
+    button { background: rgb(175, 105, 212); color: white; border: none; cursor: pointer; }
+    ul { list-style-type: none; padding: 0; }
+  </style>
+</head>
+<body>
+
+  <h2>Student Pass Filter</h2>
+
+  <div class="input-box">
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="text" id="rollNo" placeholder="Enter Roll No">
+    <input type="number" id="marks" placeholder="Enter Marks">
+    <button onclick="addStudent()">Add Student</button>
+  </div>
+
+  <h3>All Students</h3>
+  <ul id="allStudents"></ul>
+
+  <button onclick="showPassed()">Show Passed Students</button>
+
+  <h3>Passed Students</h3>
+  <ul id="passedStudents"></ul>
+
+<script>
+  class Student {
+    constructor(name, rollNo, marks) {
+      this.name = name;
+      this.rollNo = rollNo;
+      this.marks = marks;
+    }
+    isPassed() {
+      return this.marks > 40;
+    }
+  }
+
+  let students = [];
+
+  function addStudent() {
+    let name = document.getElementById("name").value;
+    let rollNo = document.getElementById("rollNo").value;
+    let marks = parseInt(document.getElementById("marks").value);
+
+    if (name && rollNo && !isNaN(marks)) {
+      let s = new Student(name, rollNo, marks);
+      students.push(s);
+      showAll();
+      document.getElementById("name").value = "";
+      document.getElementById("rollNo").value = "";
+      document.getElementById("marks").value = "";
+    } else {
+      alert("Enter all details!");
+    }
+  }
+
+  function showAll() {
+    let list = document.getElementById("allStudents");
+    list.innerHTML = "";
+    students.map(s => {
+      let li = document.createElement("li");
+      li.textContent = `${s.name} (Roll: ${s.rollNo}) - Marks: ${s.marks}`;
+      list.appendChild(li);
+    });
+  }
+
+  function showPassed() {
+    let list = document.getElementById("passedStudents");
+    list.innerHTML = "";
+    let passed = students.filter(s => s.isPassed());
+    passed.map(s => {
+      let li = document.createElement("li");
+      li.textContent = `${s.name} (Roll: ${s.rollNo}) - Marks: ${s.marks}`;
+      list.appendChild(li);
+    });
+  }
+</script>
+</body>
+</html>

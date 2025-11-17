@@ -1,0 +1,107 @@
+--------- App.js
+import { useState } from 'react';
+import './App.css';
+ 
+function App() {
+  const [page, setPage] = useState('home');
+ 
+  const renderContent = () => {
+    switch(page) {
+      case 'home':
+        return (
+          <div className="content">
+            <h1>Welcome to My College</h1>
+            <p>Providing quality education and shaping the future.</p>
+          </div>
+        );
+      case 'about':
+        return (
+          <div className="content">
+            <h1>About Us</h1>
+            <p>Our college is dedicated to excellence in education and student development.</p>
+          </div>
+        );
+      case 'contact':
+        return (
+          <div className="content">
+            <h1>Contact Us</h1>
+            <p>Name: Prathamesh Shinde</p>
+            <p>Email: prathameshshinde2002@gmail.com</p>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+ 
+  return (
+    <div>
+      <nav className="navbar">
+        <h2>My College</h2>
+        <div className="links">
+          <button onClick={() => setPage('home')}>Home</button>
+          <button onClick={() => setPage('about')}>About</button>
+          <button onClick={() => setPage('contact')}>Contact</button>
+        </div>
+      </nav>
+      {renderContent()}
+    </div>
+  );
+}
+ 
+export default App;
+ 
+ 
+// npx create-react-app SinglePage (Run this command to setup project)
+// cd SinglePage
+// npm start
+ 
+ 
+-------- App.css
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f0f8ff;
+}
+ 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #4e73df;
+  padding: 15px 30px;
+  color: white;
+}
+ 
+.navbar h2 {
+  margin: 0;
+}
+ 
+.navbar .links button {
+  margin: 0 5px;
+  padding: 8px 15px;
+  background: white;
+  color: #4e73df;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+ 
+.navbar .links button:hover {
+  background: #dbe5ff;
+}
+ 
+.content {
+  text-align: center;
+  padding: 50px;
+}
+ 
+.content h1 {
+  color: #4e73df;
+}
+ 
+.content p {
+  font-size: 18px;
+  color: #333;
+}
