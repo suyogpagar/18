@@ -1,0 +1,5 @@
+This is the output file.
+Content read was:
+Hello from input file!
+This is some sample text.
+gchcbsxzn
